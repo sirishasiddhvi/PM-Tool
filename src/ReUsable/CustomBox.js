@@ -6,7 +6,7 @@ const CustomBox = ({...props}) => {
     <Box
     {...props} 
     >
-      {props.children}
+      {/* {props.children} */}
     </Box>
   );
 };
