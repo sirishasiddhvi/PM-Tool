@@ -7,6 +7,8 @@ import { Snackbar, Alert, Slide } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Login } from './Login/Login';
 import axios from "axios"
+import { EditUser } from './Users/EditUser';
+import { Users } from './Users/Users';
 
 function App() {
   const [userProfile,setUserProfile]=useState({})
@@ -58,10 +60,14 @@ function App() {
       <SnackContext.Provider value={{ snack, setSnack }}>
       <BrowserRouter>
       <Link to="adduser">AddUser</Link>&nbsp;&nbsp;
-      <Link to="login">Login</Link>
+      <Link to="login">Login</Link>&nbsp;&nbsp;
+      <Link to="edituser">EditUser</Link>&nbsp;&nbsp;
+      <Link to="users">Users</Link>&nbsp;&nbsp;
             <Routes>
             <Route path="adduser" element={<AddUser/>}/>
               <Route path="login" element={<Login/>}/>
+              <Route path="edituser" element={<EditUser/>}/>
+              <Route path="users" element={<Users/>}/>
               </Routes></BrowserRouter>
       </SnackContext.Provider>
       </UserContext.Provider>
