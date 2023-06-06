@@ -7,9 +7,10 @@ import { Snackbar, Alert, Slide } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Login } from './Login/Login';
 import axios from "axios"
+import { EditUser } from './Users/EditUser';
+import { Users } from './Users/Users';
 import InviteLogin from './InviteLogin/InviteLogin';
 import AcceptLogin from './AcceptLogin/AcceptLogin'
-
 
 function App() {
   const [role, setRole] = useState("");
@@ -62,14 +63,19 @@ function App() {
       <UserContext.Provider value={{userProfile,setUserProfile,role, setRole, mail, setMail}}>
       <SnackContext.Provider value={{ snack, setSnack }}>
       <BrowserRouter>
-      <Link to="adduser">AddUser</Link>&nbsp; &nbsp; &nbsp; &nbsp;
-      <Link to="login">Login</Link>&nbsp; &nbsp; &nbsp; &nbsp;
-      <Link to="invite_login">InviteLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+  
+      <Link to="adduser">AddUser</Link>&nbsp;&nbsp;
+      <Link to="login">Login</Link>&nbsp;&nbsp;
+      <Link to="edituser">EditUser</Link>&nbsp;&nbsp;
+      <Link to="users">Users</Link>&nbsp;&nbsp;
+ <Link to="invite_login">InviteLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="accept_login">InviteLogin</Link>
             <Routes>
             <Route path="adduser" element={<AddUser/>}/>
               <Route path="login" element={<Login/>}/>
-              <Route path="invite_login" element={<InviteLogin/>}/>
+              <Route path="edituser" element={<EditUser/>}/>
+              <Route path="users" element={<Users/>}/>
+                 <Route path="invite_login" element={<InviteLogin/>}/>
               <Route path="accept_login" element={<AcceptLogin/>}/>
               </Routes></BrowserRouter>
       </SnackContext.Provider>
