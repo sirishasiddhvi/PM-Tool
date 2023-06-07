@@ -1,8 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
-import { AddUser } from './Users/AddUser';
-import { SnackContext, UserContext } from "./Context/UserContext"
-import { BrowserRouter, Link,Route, Routes, Navigate } from "react-router-dom";
+import logo from "./logo.svg";
+import "./App.css";
+import { AddUser } from "./Users/AddUser";
+import { SnackContext, UserContext } from "./Context/UserContext";
+import { BrowserRouter, Link, Route, Routes, Navigate } from "react-router-dom";
 import { Snackbar, Alert, Slide } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Login } from './Login/Login';
@@ -15,24 +15,24 @@ import ProjectLogin from './ProjectLogin/ProjectLogin'
 function App() {
   const [role, setRole] = useState("");
   const [mail, setMail] = useState("");
-  const [userProfile,setUserProfile]=useState({})
+  const [userProfile, setUserProfile] = useState({});
   const [snack, setSnack] = useState({
     message: "",
     color: "",
     open: false,
   });
-  useEffect(()=>{
-    axios.post("/api/getsession").then((res)=>{
-      if(res.data.status===true){
-        console.log(res.data.data)
-        setUserProfile(res.data.data)
-      }
-    })
-    console.log(userProfile,"userProfile")
-  },[])
+  // useEffect(() => {
+  //   axios.post("/api/getsession").then((res) => {
+  //     if (res.data.status === true) {
+  //       console.log(res.data.data);
+  //       setUserProfile(res.data.data);
+  //     }
+  //   });
+  //   console.log(userProfile, "userProfile");
+  // }, []);
   return (
     <div className="App">
-     <Snackbar
+      <Snackbar
         open={snack.open}
         autoHideDuration={2000}
         onClose={() => {
