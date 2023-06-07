@@ -11,8 +11,13 @@ export const Users = () => {
     { selector: "user_name", name: "Name", sortable: true, width: "15%" },
     { selector: "user_email", name: "Email", sortable: true, width: "15%" },
     { selector: "user_mobile", name: "Mobile", sortable: true, width: "15%" },
-    { cell:(row)=>(
-        <p>{row.user_role===1?"":""}</p>
+    { cell:(row)=>(<div>
+        <p>{row.user_role==1?"Admin":""}</p>
+        <p>{row.user_role==2?"Manager":""}</p>
+        <p>{row.user_role==3?"TeamLeader":""}</p>
+        <p>{row.user_role==4?"Developer":""}</p>
+        <p>{row.user_role==5?"Client":""}</p>
+        </div>
     ), name: "Role", sortable: true, width: "15%" },
     { selector: "reg_date", name: "Reg-Date", sortable: true, width: "15%" },
   ];

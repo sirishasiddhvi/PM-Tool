@@ -3,8 +3,8 @@ import CustomButton from "../ReUsable/CustomButton";
 import CustomContainer from "../ReUsable/CustomContainer";
 import CustomTextField from "../ReUsable/CustomTextfield";
 import { MenuItem } from "@mui/material";
-import { useAddUser } from "./AddUserFunction";
 import CustomGrid from "../ReUsable/CustomGrid";
+import CustomTypography from "../ReUsable/CustomTypography";
 import {useEditUser} from "./EditUserFunction"
 
 
@@ -21,6 +21,7 @@ export const EditUser=()=>{
                 justifyContent="center"
                 alignItems="center"
               >
+                 <CustomTypography variant="h3">Edit User</CustomTypography>
                 <CustomTextField
                   size="small"
                   type="text"

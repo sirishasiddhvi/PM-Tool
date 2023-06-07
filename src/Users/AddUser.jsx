@@ -5,13 +5,14 @@ import CustomTextField from "../ReUsable/CustomTextfield";
 import { MenuItem } from "@mui/material";
 import { useAddUser } from "./AddUserFunction";
 import CustomGrid from "../ReUsable/CustomGrid";
+import CustomTypography from "../ReUsable/CustomTypography";
 
 export const AddUser = () => {
   const [user, userChange, userSubmit, err] = useAddUser();
   return (
     <CustomContainer maxwidth="md">
       <CustomBox
-      sx={{height:450,width:"60%",m:10,p:2,boxShadow:5}}>
+      sx={{height:"50%",width:"60%",m:10,p:2,boxShadow:5}}>
         <form onSubmit={userSubmit}>
           <CustomGrid
             container
@@ -19,6 +20,7 @@ export const AddUser = () => {
             justifyContent="center"
             alignItems="center"
           >
+              <CustomTypography variant="h3">Add User</CustomTypography>
             <CustomTextField
               size="small"
               type="text"

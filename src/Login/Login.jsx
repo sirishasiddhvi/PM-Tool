@@ -36,6 +36,7 @@ export const Login = () => {
             justifyContent="center"
             alignItems="center"
           >
+            <CustomTypography variant="h3">Login</CustomTypography>
             <CustomTextField
               size="small"
               name="username"
