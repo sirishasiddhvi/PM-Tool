@@ -40,8 +40,8 @@ export const AddUser = () => {
               label="EmailId"
               value={user.email}
               onChange={userChange}
-              color={err === 2 ||err === 3? "error" : ""}
-              focused={err === 2||err === 3 ? true : false}
+              color={err === 2 ? "error" : ""}
+              focused={err === 2 ? true : false}
               sx={{ m: 2 }}
               style={{ width: "250px" }}
             />
@@ -52,8 +52,8 @@ export const AddUser = () => {
               label="MobileNumber"
               value={user.mobile}
               onChange={userChange}
-              color={err === 4||err === 5 ? "error" : ""}
-              focused={err === 4||err === 5 ? true : false}
+              color={err === 3 ? "error" : ""}
+              focused={err === 3 ? true : false}
               sx={{ m: 2 }}
               style={{ width: "250px" }}
             />{" "}
@@ -64,8 +64,8 @@ export const AddUser = () => {
               label="Password"
               value={user.pass}
               onChange={userChange}
-              color={err === 6 ? "error" : ""}
-              focused={err === 6 ? true : false}
+              color={err === 4 ? "error" : ""}
+              focused={err === 4 ? true : false}
               sx={{ m: 2 }}
               style={{ width: "250px" }}
             />
@@ -77,8 +77,8 @@ export const AddUser = () => {
               label="Role"
               value={user.role}
               onChange={userChange}
-              color={err === 7 ? "error" : ""}
-              focused={err === 7 ? true : false}
+              color={err === 5 ? "error" : ""}
+              focused={err === 5 ? true : false}
               sx={{ m: 2 }}
               style={{ width: "250px" }}
             >
@@ -95,8 +95,8 @@ export const AddUser = () => {
             label="Status"
             value={user.status}
             onChange={userChange}
-            color={err===8?"error":""}
-            focused={err===8?true:false}
+            color={err===6?"error":""}
+            focused={err===6?true:false}
             sx={{ m: 2 }}
             style={{ width: "250px" }}
           /> */}

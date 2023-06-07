@@ -5,13 +5,12 @@ import { SnackContext, UserContext } from "./Context/UserContext";
 import { BrowserRouter, Link, Route, Routes, Navigate } from "react-router-dom";
 import { Snackbar, Alert, Slide } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Login } from "./Login/Login";
-import axios from "axios";
-import { EditUser } from "./Users/EditUser";
-import { Users } from "./Users/Users";
-import InviteLogin from "./InviteLogin/InviteLogin";
-import AcceptLogin from "./AcceptLogin/AcceptLogin";
-import { AddTask } from "./Tasks/AddTask";
+import { Login } from './Login/Login';
+import axios from "axios"
+import InviteLogin from './InviteLogin/InviteLogin';
+import AcceptLogin from './AcceptLogin/AcceptLogin'
+import ProjectLogin from './ProjectLogin/ProjectLogin'
+
 
 function App() {
   const [role, setRole] = useState("");
@@ -61,30 +60,22 @@ function App() {
           {snack.message}
         </Alert>
       </Snackbar>
-      <UserContext.Provider
-        value={{ userProfile, setUserProfile, role, setRole, mail, setMail }}
-      >
-        <SnackContext.Provider value={{ snack, setSnack }}>
-          <BrowserRouter>
-            <Link to="adduser">AddUser</Link>&nbsp;&nbsp;
-            <Link to="login">Login</Link>&nbsp;&nbsp;
-            <Link to="edituser">EditUser</Link>&nbsp;&nbsp;
-            <Link to="users">Users</Link>&nbsp;&nbsp;
-            <Link to="addtask">Add Task</Link>&nbsp;&nbsp;
-            <Link to="invite_login">InviteLogin</Link>&nbsp; &nbsp; &nbsp;
-            &nbsp;
-            <Link to="accept_login">AcceptLogin</Link>
+      <UserContext.Provider value={{userProfile,setUserProfile,role, setRole, mail, setMail}}>
+      <SnackContext.Provider value={{ snack, setSnack }}>
+      <BrowserRouter>
+      <Link to="adduser">AddUser</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="login">Login</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="invite_login">InviteLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="accept_login">AcceptLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="project_login">InviteLogin</Link>
             <Routes>
-              <Route path="adduser" element={<AddUser />} />
-              <Route path="login" element={<Login />} />
-              <Route path="edituser" element={<EditUser />} />
-              <Route path="users" element={<Users />} />
-              <Route path="addtask" element={<AddTask />} />
-              <Route path="invite_login" element={<InviteLogin />} />
-              <Route path="accept_login" element={<AcceptLogin />} />
-            </Routes>
-          </BrowserRouter>
-        </SnackContext.Provider>
+            <Route path="adduser" element={<AddUser/>}/>
+              <Route path="login" element={<Login/>}/>
+              <Route path="invite_login" element={<InviteLogin/>}/>
+              <Route path="accept_login" element={<AcceptLogin/>}/>
+              <Route path="project_login" element={<ProjectLogin/>}/>
+              </Routes></BrowserRouter>
+      </SnackContext.Provider>
       </UserContext.Provider>
     </div>
   );
