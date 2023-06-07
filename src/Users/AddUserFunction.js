@@ -88,17 +88,7 @@ else {
     // formdata.append("", user.status);
     axios.post("/api/add_user",formdata).then((res)=>{
         if(res.data.status==true){
-          setSnack({
-            message: res.data.msg,
-            type: "success",
-            open: true,
-          })
-        }else{
-          setSnack({
-            message: res.data.msg,
-            type: "error",
-            open: true,
-          })
+            console.log("success")
         }
     })
 }
