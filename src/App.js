@@ -66,7 +66,7 @@ function App() {
       <Link to="adduser">AddUser</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="login">Login</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="invite_login">InviteLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
-      <Link to="accept_login">InviteLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="accept_login">AcceptLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="project_login">InviteLogin</Link>
             <Routes>
             <Route path="adduser" element={<AddUser/>}/>
