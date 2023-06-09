@@ -16,6 +16,8 @@ import ProjectLogin from './ProjectLogin/ProjectLogin'
 import { EditTask } from "./Tasks/EditTask";
 import { AddScope } from "./Scopes/AddScope";
 import { EditScope } from "./Scopes/EditScope";
+import {AllScopes}from "./Scopes/AllScopes"
+import {ApprovedScopes} from "./Scopes/ApprovedScopes"
 
 function App() {
   const [role, setRole] = useState("");
@@ -76,6 +78,8 @@ function App() {
       <Link to="tasks">Tasks</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="addscope">AddScope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="editscope">EditScope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="allscopes">AllScopes</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="approvescope">ApproveScope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       {/* <Link to="edittask">EditTask</Link>&nbsp; &nbsp; &nbsp; &nbsp; */}
       <Link to="invite_login">InviteLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="accept_login">AcceptLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
@@ -89,6 +93,8 @@ function App() {
               <Route path="tasks" element={<Tasks/>}/>
               <Route path="addscope" element={<AddScope/>}/>
               <Route path="editscope" element={<EditScope/>}/>
+              <Route path="allscope" element={<AllScopes/>}/>
+              <Route path="approvescope" element={<ApprovedScopes/>}/>
               <Route path="edittask/:id" element={<EditTask/>}/>
               <Route path="invite_login" element={<InviteLogin/>}/>
               <Route path="accept_login" element={<AcceptLogin/>}/>

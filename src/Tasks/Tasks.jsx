@@ -3,12 +3,18 @@ import CustomBox from "../ReUsable/CustomBox";
 import CustomButton from "../ReUsable/CustomButton";
 import DataTable from "react-data-table-component";
 import CustomGrid from "../ReUsable/CustomGrid";
+import CustomTextField from "../ReUsable/CustomTextfield";
+import CustomTypography from "../ReUsable/CustomTypography";
+import CustomDialog from "../ReUsable/CustomDilog";
+import { MenuItem } from "@mui/material";
 import DataTableExtensions from "react-data-table-component-extensions";
 import { useTasks } from "./TasksFunction";
 import { useNavigate } from "react-router-dom";
+import { useStatus } from "./UpdateStatusFunction";
 
 export const Tasks = () => {
   const [data] = useTasks();
+  const [task_status,statusChange,open,openStatus,closeStatus,updateStatus,err]=useStatus()
   const history = useNavigate();
   const columns = [
     { selector: "task_id", name: "ID", sortable: true, width: "8%" },
@@ -62,7 +68,19 @@ export const Tasks = () => {
       ),
       name: "Status",
       sortable: true,
-      width: "15%",
+      width: "10%",
+    },
+    {
+      cell: (row) => (
+        <CustomButton
+          type="button"
+          variant="contained"
+          label="taskupdate"
+          sx={{textTransform:"lowercase"}}
+          onClick={()=>openStatus(row.task_id)}
+        ></CustomButton>
+      ),
+      name: "TaskUpdate",width:"10%"
     },
     {
       cell: (row) => (
@@ -70,10 +88,11 @@ export const Tasks = () => {
           type="button"
           variant="contained"
           label="edit"
+          sx={{textTransform:"lowercase"}}
           onClick={() => history(`/edittask/${row.task_id}`)}
         ></CustomButton>
       ),
-      name: "Edit",
+      name: "Edit",width:"8%"
     },
   ];
   const tableData = {
@@ -107,6 +126,61 @@ export const Tasks = () => {
           />
         </DataTableExtensions>
       </CustomBox>
+      <CustomDialog open={open}
+      onClose={closeStatus}>
+      <CustomTypography variant="h4" align="center">Task Status</CustomTypography>
+        <form>
+          <CustomGrid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+             <CustomTextField
+                select
+                size="small"
+                type="text"
+                name="task_status"
+                label="Task Status"
+                value={task_status}
+                onChange={statusChange}
+                color={err === 1 ? "error" : ""}
+                focused={err === 1 ? true : false}
+                sx={{ m: 2, width: "90%" }}
+                // style={{ width: "250px" }}
+              >
+                <MenuItem value="1">Not Started</MenuItem>
+                <MenuItem value="2">In Progress</MenuItem>
+                <MenuItem value="3">In Review</MenuItem>
+                <MenuItem value="4">Completed</MenuItem>
+              </CustomTextField>
+              <CustomGrid
+            container
+            direction="row"
+            justifyContent="space-around"
+            alignItems="center"
+          >
+              <CustomButton
+                size="small"
+                type="submit"
+                label="update"
+                variant="contained"
+                sx={{ m: 2, width: "20%" ,textTransform:"lowercase"}}
+                // style={{ width: "250px" }}
+                onClick={updateStatus}
+              />
+               <CustomButton
+                size="small"
+                type="submit"
+                label="close"
+                variant="contained"
+                sx={{ m: 2, width: "20%",textTransform:"lowercase" }}
+                // style={{ width: "250px" }}
+                onClick={closeStatus}
+              /></CustomGrid>
+              </CustomGrid>
+              </form>
+      </CustomDialog>
     </CustomContainer>
   );
 };
