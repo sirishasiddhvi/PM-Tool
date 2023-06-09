@@ -6,11 +6,16 @@ import { BrowserRouter, Link, Route, Routes, Navigate } from "react-router-dom";
 import { Snackbar, Alert, Slide } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Login } from './Login/Login';
-import axios from "axios"
+import {Users} from "./Users/Users"
+import { EditUser } from "./Users/EditUser";
+import {AddTask} from "./Tasks/AddTask"
+import {Tasks} from "./Tasks/Tasks"
 import InviteLogin from './InviteLogin/InviteLogin';
 import AcceptLogin from './AcceptLogin/AcceptLogin'
 import ProjectLogin from './ProjectLogin/ProjectLogin'
-
+import { EditTask } from "./Tasks/EditTask";
+import { AddScope } from "./Scopes/AddScope";
+import { EditScope } from "./Scopes/EditScope";
 
 function App() {
   const [role, setRole] = useState("");
@@ -65,12 +70,26 @@ function App() {
       <BrowserRouter>
       <Link to="adduser">AddUser</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="login">Login</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      {/* <Link to="edituser">EditUser</Link>&nbsp; &nbsp; &nbsp; &nbsp; */}
+      <Link to="users">Users</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="addtask">AddTask</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="tasks">Tasks</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="addscope">AddScope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="editscope">EditScope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      {/* <Link to="edittask">EditTask</Link>&nbsp; &nbsp; &nbsp; &nbsp; */}
       <Link to="invite_login">InviteLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="accept_login">AcceptLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="project_login">InviteLogin</Link>
             <Routes>
             <Route path="adduser" element={<AddUser/>}/>
-              <Route path="login" element={<Login/>}/>
+            <Route path="login" element={<Login/>}/>
+            <Route path="edituser/:id" element={<EditUser/>}/>
+              <Route path="users" element={<Users/>}/>
+              <Route path="addtask" element={<AddTask/>}/>
+              <Route path="tasks" element={<Tasks/>}/>
+              <Route path="addscope" element={<AddScope/>}/>
+              <Route path="editscope" element={<EditScope/>}/>
+              <Route path="edittask/:id" element={<EditTask/>}/>
               <Route path="invite_login" element={<InviteLogin/>}/>
               <Route path="accept_login" element={<AcceptLogin/>}/>
               <Route path="project_login" element={<ProjectLogin/>}/>
