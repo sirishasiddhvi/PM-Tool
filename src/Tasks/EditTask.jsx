@@ -2,30 +2,33 @@ import CustomBox from "../ReUsable/CustomBox";
 import CustomButton from "../ReUsable/CustomButton";
 import CustomContainer from "../ReUsable/CustomContainer";
 import CustomTextField from "../ReUsable/CustomTextfield";
-import { MenuItem } from "@mui/material";
+import { MenuItem, Card, CardActions } from "@mui/material";
 import CustomGrid from "../ReUsable/CustomGrid";
 import CustomTypography from "../ReUsable/CustomTypography";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { useAddTask } from "./AddTaskFunction";
+import { useEditTask } from "./EditTaskFunction";
+import axios from "axios";
 
-export const AddTask = () => {
+export const EditTask = () => {
   const [
     task,
-    taskChange,
-    submitTask,
-    err,
+    task_images,
+    task_new_images,
     task_desc,
     task_descChange,
-    task_images,
+    taskChange,
     task_imageChange,
-  ] = useAddTask();
+    submitTask,
+    err,
+  ] = useEditTask();
+
   return (
     <CustomContainer maxwidth="md">
       <CustomBox
-        sx={{ height: "50%", width: "60%", m: 10, p: 5, boxShadow: 5 }}
+        sx={{ height: "80%", width: "90%", m: 10, p: 2, boxShadow: 5 }}
       >
-        <CustomTypography variant="h3">Add Task</CustomTypography>
+        <CustomTypography variant="h3">Edit Task</CustomTypography>
         <form onSubmit={submitTask}>
           <CustomGrid
             container
@@ -124,11 +127,39 @@ export const AddTask = () => {
                 onChange={task_descChange}
               />
             </CustomGrid>
-           
             <CustomGrid item md={6} lg={6} xl={6} sm={12} xs={12}>
-              {task_images.length != 0 &&
-                task_images.map((article) => (
-                  <img width="250px" height="250px" src={article.url} />
+              {task_images.split(",").map((task) => (
+                <Card >
+                  <img
+                    width="250px"
+                    height="250px"
+                    src={"/static/tasks/" + task}
+                  />
+                  <CardActions>
+                    <CustomButton
+                      variant="contained"
+                      color="primary"
+                      label="delete"
+                      onClick={() => {
+                        //   const formData= new FormData()
+                        //   formData.append("idd",id)
+                        //   formData.append("image_name",task)
+                        //   Axios.post("/api/delete_article_image", formData).then((res) => {
+                        //     if (res.data.status) {
+                        //      console.log(res.data.status)
+                        //     } else {
+                        //     }
+                        //   });
+                      }}
+                    >
+                      delete
+                    </CustomButton>
+                  </CardActions>
+                </Card>
+              ))}
+              {task_new_images.length != 0 &&
+                task_new_images.map((task) => (
+                  <img width="250px" height="250px" src={task} />
                 ))}
               <br />
               <br />

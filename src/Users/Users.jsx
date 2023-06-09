@@ -1,11 +1,14 @@
-import { useUsers } from "./usersFunction";
 import CustomContainer from "../ReUsable/CustomContainer";
 import CustomBox from "../ReUsable/CustomBox";
+import CustomButton from "../ReUsable/CustomButton";
+import { useUsers } from "./UsersFunction";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
+import { useNavigate } from "react-router-dom";
 
 export const Users = () => {
   const [data] = useUsers();
+  const history= useNavigate()
   const columns = [
     { selector: "user_id", name: "ID", sortable: true, width: "8%" },
     { selector: "user_name", name: "Name", sortable: true, width: "15%" },
@@ -20,6 +23,16 @@ export const Users = () => {
         </div>
     ), name: "Role", sortable: true, width: "15%" },
     { selector: "reg_date", name: "Reg-Date", sortable: true, width: "15%" },
+    {
+      cell: (row) => (
+        <CustomButton
+        type="button"
+        variant="contained"
+        label="edit"
+          onClick={() => history(`/edituser/${row.user_id}`)}></CustomButton>
+      ),
+      name: "Edit",
+    },
   ];
   const tableData = {
     columns,

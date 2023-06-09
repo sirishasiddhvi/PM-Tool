@@ -2,31 +2,31 @@ import CustomBox from "../ReUsable/CustomBox";
 import CustomButton from "../ReUsable/CustomButton";
 import CustomContainer from "../ReUsable/CustomContainer";
 import CustomTextField from "../ReUsable/CustomTextfield";
-import { MenuItem } from "@mui/material";
+import { CardActions, MenuItem, Card } from "@mui/material";
 import CustomGrid from "../ReUsable/CustomGrid";
 import CustomTypography from "../ReUsable/CustomTypography";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { useAddTask } from "./AddTaskFunction";
+import { useEditScope } from "./EditScopefunction";
 
-export const AddTask = () => {
+export const EditScope = () => {
   const [
-    task,
-    taskChange,
-    submitTask,
+    scope,
+    scopeChange,
+    scopeSubmit,
+    scope_desc,
+    scope_descChange,
+    scope_images,
+    scope_imageChange,
     err,
-    task_desc,
-    task_descChange,
-    task_images,
-    task_imageChange,
-  ] = useAddTask();
+  ] = useEditScope();
   return (
     <CustomContainer maxwidth="md">
       <CustomBox
-        sx={{ height: "50%", width: "60%", m: 10, p: 5, boxShadow: 5 }}
+        sx={{ height: "50%", width: "60%", m: 10, p: 2, boxShadow: 5 }}
       >
-        <CustomTypography variant="h3">Add Task</CustomTypography>
-        <form onSubmit={submitTask}>
+        <form onSubmit={scopeSubmit}>
+          <CustomTypography variant="h3">Edit Scope</CustomTypography>
           <CustomGrid
             container
             direction="row"
@@ -38,9 +38,9 @@ export const AddTask = () => {
                 size="small"
                 type="text"
                 name="project_id"
-                label="Project Id"
-                value={task.project_id}
-                onChange={taskChange}
+                label="ProjectId"
+                value={scope.project_id}
+                onChange={scopeChange}
                 color={err === 1 ? "error" : ""}
                 focused={err === 1 ? true : false}
                 sx={{ m: 2, width: "90%" }}
@@ -51,10 +51,10 @@ export const AddTask = () => {
               <CustomTextField
                 size="small"
                 type="text"
-                name="scope_id"
-                label="Scope Id"
-                value={task.scope_id}
-                onChange={taskChange}
+                name="manager_id"
+                label="ManagerId"
+                value={scope.manager_id}
+                onChange={scopeChange}
                 color={err === 2 ? "error" : ""}
                 focused={err === 2 ? true : false}
                 sx={{ m: 2, width: "90%" }}
@@ -65,10 +65,10 @@ export const AddTask = () => {
               <CustomTextField
                 size="small"
                 type="text"
-                name="task_title"
-                label="Task Title"
-                value={task.task_title}
-                onChange={taskChange}
+                name="client_id"
+                label="ClientId"
+                value={scope.client_id}
+                onChange={scopeChange}
                 color={err === 3 ? "error" : ""}
                 focused={err === 3 ? true : false}
                 sx={{ m: 2, width: "90%" }}
@@ -76,60 +76,48 @@ export const AddTask = () => {
               />
             </CustomGrid>
             <CustomGrid item md={6} lg={6} xl={6} sm={12} xs={12}>
-              <CustomTextField
-                size="small"
-                type="date"
-                name="task_due_date"
-                label="Due Date"
-                value={task.task_due_date}
-                onChange={taskChange}
-                color={err === 7 ? "error" : ""}
-                focused={err === 7 ? true : false}
-                sx={{ m: 2, width: "90%" }}
-                // style={{ width: "250px" }}
-              />
-            </CustomGrid>
-            <CustomGrid item md={6} lg={6} xl={6} sm={12} xs={12}>
+              {" "}
               <CustomTextField
                 size="small"
                 type="text"
-                name="task_assigned_by"
-                label="Task Assigned By"
-                value={task.task_assigned_by}
-                onChange={taskChange}
-                color={err === 5 ? "error" : ""}
-                focused={err === 5 ? true : false}
+                name="scope_title"
+                label="ScopeTitle"
+                value={scope.scope_title}
+                onChange={scopeChange}
+                color={err === 4 ? "error" : ""}
+                focused={err === 4 ? true : false}
                 sx={{ m: 2, width: "90%" }}
                 // style={{ width: "250px" }}
               />
             </CustomGrid>
             <CustomGrid item md={6} lg={6} xl={6} sm={12} xs={12}>
-              <CustomTextField
-                size="small"
-                type="text"
-                name="task_assign_to"
-                label="Task Assigned To"
-                value={task.task_assign_to}
-                onChange={taskChange}
-                color={err === 6 ? "error" : ""}
-                focused={err === 6 ? true : false}
-                sx={{ m: 2, width: "90%" }}
-                // style={{ width: "250px" }}
-              />
-            </CustomGrid>
-            <CustomGrid item md={6} lg={6} xl={6} sm={12} xs={12}>
+              {" "}
               <CKEditor
                 editor={ClassicEditor}
-                data={task_desc}
-                onChange={task_descChange}
+                data={scope_desc}
+                onChange={scope_descChange}
               />
             </CustomGrid>
-           
             <CustomGrid item md={6} lg={6} xl={6} sm={12} xs={12}>
-              {task_images.length != 0 &&
-                task_images.map((article) => (
-                  <img width="250px" height="250px" src={article.url} />
+              {scope_images.length != 0 &&
+                scope_images.split(",").map((scope) => (
+                  <Card>
+                    <img
+                      width="250px"
+                      height="250px"
+                      src={"/static/scope/" + scope}
+                    />
+                    <CardActions>
+                      <CustomButton
+                        variant="contained"
+                        color="primary"
+                        label="delete"
+                        // onClick={deleteImage}
+                      />
+                    </CardActions>
+                  </Card>
                 ))}
+              {/* {<img width="250px" height="250px" src={scope_images} />} */}
               <br />
               <br />
 
@@ -137,7 +125,7 @@ export const AddTask = () => {
                 accept="image/*"
                 multiple
                 style={{ display: "none" }}
-                onChange={task_imageChange}
+                onChange={scope_imageChange}
                 id="contained-button-file"
                 type="file"
               />
@@ -148,7 +136,7 @@ export const AddTask = () => {
                   label="uploadImages"
                   component="span"
                   sx={{ m: 2, width: "90%" }}
-                  //  style={{ width: "250px" }}
+                  // style={{ width: "250px" }}
                 />
               </label>
               {err === 8 && (
@@ -160,19 +148,17 @@ export const AddTask = () => {
                 select
                 size="small"
                 type="text"
-                name="task_status"
-                label="Task Status"
-                value={task.task_status}
-                onChange={taskChange}
-                color={err === 9 ? "error" : ""}
-                focused={err === 9 ? true : false}
+                name="scope_approved"
+                label="ScopeApproved"
+                value={scope.scope_approved}
+                onChange={scopeChange}
+                color={err === 5 ? "error" : ""}
+                focused={err === 5 ? true : false}
                 sx={{ m: 2, width: "90%" }}
                 // style={{ width: "250px" }}
               >
-                <MenuItem value="1">Not Started</MenuItem>
-                <MenuItem value="2">In Progress</MenuItem>
-                <MenuItem value="3">In Review</MenuItem>
-                <MenuItem value="4">Completed</MenuItem>
+                <MenuItem value="0">Not Approved</MenuItem>
+                <MenuItem value="1">Approved</MenuItem>
               </CustomTextField>
             </CustomGrid>
             <CustomGrid item md={12} lg={12} xl={12} sm={12} xs={12}>
