@@ -4,6 +4,7 @@ import { useState, useContext, useEffect } from "react";
 import { UserContext, SnackContext } from "../Context/UserContext";
 
 export default function ScopeFunction() {
+  const { snack, setSnack } = useContext(SnackContext);
   const [reject, setReject] = useState(false);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
@@ -27,9 +28,8 @@ export default function ScopeFunction() {
 
   const fetchData = async () => {
     try {
+
       const res = await axios.post('/api/view_all_scopes');
-      console.log(res, 'view_all_scopes');
-      console.log(res.data.status, 'view_all_scopes');
       if (res.data.status === true) {
         setData(res.data.data);
       }
