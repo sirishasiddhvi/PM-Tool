@@ -72,7 +72,6 @@ export default function InviteLogin() {
               label={'Invite'}
               variant="contained"
             >
-              sai
             </CustomButton>
           </form>
         </CustomBox>

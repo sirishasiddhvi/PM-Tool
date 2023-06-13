@@ -77,13 +77,13 @@ function App() {
       <Link to="addtask">AddTask</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="tasks">Tasks</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="addscope">AddScope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
-      <Link to="editscope">EditScope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      {/* <Link to="editscope">EditScope</Link>&nbsp; &nbsp; &nbsp; &nbsp; */}
       <Link to="allscopes">AllScopes</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="approvescope">ApproveScope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       {/* <Link to="edittask">EditTask</Link>&nbsp; &nbsp; &nbsp; &nbsp; */}
       <Link to="invite_login">InviteLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="accept_login">AcceptLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
-      <Link to="project_login">InviteLogin</Link>
+      <Link to="project_login">ProjectLogin</Link>
             <Routes>
             <Route path="adduser" element={<AddUser/>}/>
             <Route path="login" element={<Login/>}/>
@@ -92,8 +92,8 @@ function App() {
               <Route path="addtask" element={<AddTask/>}/>
               <Route path="tasks" element={<Tasks/>}/>
               <Route path="addscope" element={<AddScope/>}/>
-              <Route path="editscope" element={<EditScope/>}/>
-              <Route path="allscope" element={<AllScopes/>}/>
+              <Route path="editscope/:id" element={<EditScope/>}/>
+              <Route path="allscopes" element={<AllScopes/>}/>
               <Route path="approvescope" element={<ApprovedScopes/>}/>
               <Route path="edittask/:id" element={<EditTask/>}/>
               <Route path="invite_login" element={<InviteLogin/>}/>
