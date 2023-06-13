@@ -48,7 +48,7 @@ export const useEditScope=()=>{
       const data = editor.getData();
       console.log(data);
       setScope_desc(data)
-    } 
+    }
     const scope_imageChange = (e) => {
       if (e.target.files.length != 0) {
         const files = e.target.files;

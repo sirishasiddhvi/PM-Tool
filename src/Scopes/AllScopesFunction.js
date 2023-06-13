@@ -28,7 +28,8 @@ export default function ScopeFunction() {
 
   const fetchData = async () => {
     try {
-      const res = await axios.post('/api/view_all_scopes');;
+
+      const res = await axios.post('/api/view_all_scopes');
       if (res.data.status === true) {
         setData(res.data.data);
       }
@@ -44,27 +45,29 @@ export default function ScopeFunction() {
 
     axios.post("/api/scope_status", formData).then((res) => {
       console.log(res,'scope_status');
-
       setOpen(false);
 
       if (res.data.status === true) {
-        console.log(res.data.status,'res.data.status')
+        console.log('tirumalasai')
         fetchData();
-        setSnack({
-              message: res.data.msg,
-              type: "success",
-              open: true,
-              direction: "center",
-            });
-      }else {
-          setErr(1);
-          setSnack({
-            message: res.data.msg,
-            type: "error",
-            open: true,
-            direction: "center",
-          });
-        }
+      }
+
+      // if (res.data.status === true) {
+      //   setSnack({
+      //     message: res.data.msg,
+      //     type: "success",
+      //     open: true,
+      //     direction: "center",
+      //   });
+      // } else {
+      //   setErr(1);
+      //   setSnack({
+      //     message: res.data.msg,
+      //     type: "error",
+      //     open: true,
+      //     direction: "center",
+      //   });
+      // }
     });
   };
 

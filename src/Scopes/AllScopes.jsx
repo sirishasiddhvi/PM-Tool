@@ -67,7 +67,7 @@ export  function AllScopes() {
       name: "Project Images",
       sortable: true,
       width: "9%",
-    }, 
+    },
     {
       selector: "scope_approval_status",
       name: "Status",
