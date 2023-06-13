@@ -6,10 +6,10 @@ import CustomTypography from "../ReUsable/CustomTypography";
 import CustomContainer from "../ReUsable/CustomContainer";
 import CustomBox from "../ReUsable/CustomContainer";
 import CustomGrid from "../ReUsable/CustomGrid";
-import ProjectLoginFunction from "./ProjectLoginFunction";
+import ProjectLoginFunction from "./AddProjectFunction";
 import { useState, useEffect } from "react";
-
-export default function ProjectLogin() {
+ 
+export default function AddProject() {
   const [
     project_name,
     setProject_name,
@@ -28,7 +28,7 @@ export default function ProjectLogin() {
     uploadwait,
     setUploadWait,
   ] = ProjectLoginFunction();
-
+ 
   return (
     <div>
       <br />
@@ -37,7 +37,7 @@ export default function ProjectLogin() {
           sx={{ textAlign: "center", border: 1, p: 6, borderRadius: 2, mt: 15 }}
         >
           <CustomTypography variant="h4" sx={{ textAlign: "center" }}>
-            Project
+           Add Project
           </CustomTypography>
           <br />
           <form onSubmit={submit}>
@@ -63,7 +63,7 @@ export default function ProjectLogin() {
             />
             <CustomTextField
               name="client_id"
-              type="text"
+              type="number"
               value={client_id}
               label="Client ID *"
               onChange={(e) => setClient_Id(e.target.value)}
@@ -73,7 +73,7 @@ export default function ProjectLogin() {
             />
             <CustomTextField
               name="Manager_id"
-              type="text"
+              type="number"
               value={Manager_id}
               label="Manager ID *"
               onChange={(e) => setManager_Id(e.target.value)}
@@ -82,9 +82,31 @@ export default function ProjectLogin() {
               sx={{ mt: 2 }}
             />
 
+{/* <Button
+                variant="outlined"
+                size="small"
+                component="label"
+                value={images}
+                error={err == 5 && true}
+                onChange={imageChange}
+                // error={err == 7 && true}
+                sx={{
+                  width: "100%",
+                  height: 36,
+                  color: "#060847",
+                  "&:hover": { color: "#060847" },
+                  mt: 4,
+                }}
+              >
+                images*
+                <input hidden type="file" multiple />
+              </Button> */}
+ 
             <Button
               variant="outlined"
+              component="label"
               onChange={imageChange}
+              value={images}
               error={err == 5 && true}
               sx={{
                 mt: 2,
@@ -96,6 +118,7 @@ export default function ProjectLogin() {
               upload image *
               <input
                 type="file"
+                hidden
                 multiple
                 accept="image/jpeg, image/jpg, image/png"
               />
@@ -172,4 +195,3 @@ export default function ProjectLogin() {
     </div>
   );
 }
-
