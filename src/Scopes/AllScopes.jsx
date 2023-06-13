@@ -77,30 +77,17 @@ export  function AllScopes() {
 
     {
       cell: (row) =>
-        row.scope_approval_status === 'Approved' ? (
+        (
           <CustomButton
           type="button"
           size='small'
           variant="contained"
-          label="Reject"
+          label={row.scope_approval_status==="Approved"?"Reject":"Approve"}
           onClick={() => {
             handleClickOpen();
             setID(row.scope_id);
           }}
         ></CustomButton>
-        ) : (
-         
-
-          <CustomButton
-            type="button"
-            size='small'
-            variant="contained"
-            label="Approve"
-            onClick={() => {
-              handleClickOpen();
-              setID(row.scope_id);
-            }}
-          ></CustomButton>
         ),
       name: "Approve/Reject",
       width: "10%",
@@ -112,7 +99,7 @@ export  function AllScopes() {
           size='small'
           variant="contained"
           label="edit"
-          onClick={() => history(`/single_project_view/${row.project_id}`)}
+          onClick={() => history(`/editscope/${row.scope_id}`)}
         ></CustomButton>
       ),
       name: "Edit",
@@ -147,7 +134,7 @@ export  function AllScopes() {
           sx={{ textAlign: "center", border: 1, p: 6, borderRadius: 2, mt: 15 }}
         >
           <CustomTypography variant="h4" sx={{ textAlign: "center" }}>
-            Scope
+            All Scopes
           </CustomTypography>
           <br />
           <DataTableExtensions

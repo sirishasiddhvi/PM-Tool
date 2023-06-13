@@ -28,7 +28,8 @@ export  function ApprovedScopes() {
         { selector: "created_date", name: "Created Date", sortable: true, width: "15%" },
         {
           cell:(row)=>(
-            <img src={"static/scope/"+row.scope_images} height={100} width={100}/>
+            row.scope_images.split(",").map((scope)=>(
+            <img src={"static/scope/"+ scope} height={100} width={100}/>))
           ), name: "Project Images", sortable: true, width: "15%" },  
         {
           cell: (row) => (
@@ -52,7 +53,6 @@ export  function ApprovedScopes() {
         },
       ];
   
-      console.log(data,'data data data data')
       const tableData = {
         columns,
         data,
@@ -64,7 +64,7 @@ export  function ApprovedScopes() {
            <CustomContainer >
              <CustomBox sx={{ textAlign: "center", border:1, p:6, borderRadius:2, mt:15}}>
              <CustomTypography variant="h4" sx={{ textAlign: "center" }}>
-             Project
+             Approved Scopes
            </CustomTypography>
            <br />
            <DataTableExtensions
