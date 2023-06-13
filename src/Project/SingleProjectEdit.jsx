@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Card, CardMedia, Button } from "@mui/material";
+import { Card, CardMedia, Button,Grid } from "@mui/material";
 import CustomTextField from "../ReUsable/CustomTextfield";
 import CustomButton from "../ReUsable/CustomButton";
 import CustomTypography from "../ReUsable/CustomTypography";
@@ -10,7 +10,7 @@ import CustomGrid from "../ReUsable/CustomGrid";
 import SingleProjectViewFunction from './SingleProjectEditFunction'
 
 export default function SingleProjectView() {
-    
+  const [wait, setWait] = useState(false)
     const [
       project_name,
       setProject_name,
@@ -30,10 +30,10 @@ export default function SingleProjectView() {
       setUploadWait,
       data, setData,
       created_date, setCreatedDate,
-      project_id, setProjectId
+      project_id, setProjectId,oldImg,setOldImg
     ] = SingleProjectViewFunction();
 
-
+  
   return (
     <div>
       <br />
@@ -45,15 +45,20 @@ export default function SingleProjectView() {
             Project
           </CustomTypography>
           <br />
+          {JSON.stringify(typeof(oldImg))}
           <form onSubmit={submit}>
           <CustomTextField
+              disabled
               name="project_id"
               type="text"
               value={project_id}
               label="Project ID *"
-              onChange={(e) => setProjectId(e.target.value)}
+              // onChange={(e) => setProjectId(e.target.value)}
               error={err == 1 && true}
               fullWidth
+              InputLabelProps={{
+                shrink: true
+              }}
               sx={{ mt: 2 }}
             />
             <CustomTextField
@@ -97,17 +102,22 @@ export default function SingleProjectView() {
               sx={{ mt: 2 }}
             />
 
-            <CustomTextField
-              name="created_date"
-              type="text"
-              value={created_date}
-              label="Date *"
-              onChange={(e) => setCreatedDate(e.target.value)}
-              error={err == 6 && true}
-              fullWidth
-              disabled
-              sx={{ mt: 2 }}
-            />
+<CustomTextField
+  disabled
+  name="created_date"
+  type="text"
+  value={created_date}
+  label="Date *"
+  // onChange={(e) => setCreatedDate(e.target.value)}
+  error={err === 6 && true}
+  fullWidth
+  InputLabelProps={{
+    shrink: true
+  }}
+  sx={{ mt: 2 }}
+/>
+
+
 
 {/* <Button
                 variant="outlined"
@@ -128,13 +138,13 @@ export default function SingleProjectView() {
                 images*
                 <input hidden type="file" multiple />
               </Button> */}
-{JSON.stringify(images)}
+{/* {JSON.stringify(images)} */}
 <Button
   variant="outlined"
   component="label"
   onChange={imageChange}
   value={images}
-  error={err == 7 && true}
+  error={err === 7 && true}
   sx={{
     mt: 2,
     width: "100%",
@@ -147,75 +157,31 @@ export default function SingleProjectView() {
     type="file"
     hidden
     multiple
-    accept="image/jpeg, image/jpg, image/png"
+    // accept="image/jpeg, image/jpg, image/png"
   />
 </Button>
-{uploadwait ? (
-  <span style={{ color: "white" }}>
-    <br />
-    <br />
-    Adding Images...
-  </span>
-) : (
-  <>
-    {console.log("Images:", images)}
-    {Array.isArray(images) && images.length !== 0 ? (
-      <CustomGrid item xs={12}>
-        <CustomGrid 
-          container
-          direction="row"
-          justify="flex-start"
-          alignItems="flex-start"
-          spacing={3}
-        >
-          {images.map((image) => {
-            return (
-              <CustomGrid item key={image.preview}>
-                <Card>
-                  <CardMedia
-                    style={{ height: 200, width: 200 }}
-                    image={image.preview}
-                    title={image.preview}
-                  />
 
-             {/* <img src={`static/projects/${image}`} height={100} width={100}/> */}
-                  
-                  <CustomButton
-                    label={"DELETE IMAGE"}
-                    variant="outlined"
-                    color="primary"
-                    component="span"
-                    style={{
-                      border: "1px solid black",
-                      color: "#060847",
-                      "&:hover": { color: "#060847" },
-                    }}
-                    fullWidth
-                    onClick={() => {
-                      setImages(
-                        images.filter(
-                          (item) => item.preview !== image.preview
-                        )
-                      );
-                    }}
-                  >
-                    DELETE IMAGE
-                  </CustomButton>
-                </Card>
-              </CustomGrid>
-            );
-          })}
-        </CustomGrid>
-      </CustomGrid>
-    ) : (
-      <span style={{ color: "white" }}>
-        <br />
-        <br />
-        No Images Found.
-      </span>
-    )}
-  </>
-)}
+{/* <Card>
+  <img src={`/static/projects/${oldImg}`} height={200} width={200} /><br/>
+  <CustomButton
+    variant="contained"
+    color="primary"
+    label="delete"
+    // onClick={deleteImage}
+  />
+</Card> */}
+
+{images.preview ? (
+                                      <img
+                                        src={images.preview}
+                                        width="150"
+                                        height="150"
+                                      />
+                                    ):((images=== "No Image"? "" : <img
+                                      src={`/static/projects/${images}`}
+                                      width="150"
+                                      height="170"
+                                    />))}
 
 
             <CustomButton

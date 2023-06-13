@@ -23,6 +23,7 @@ export default function InviteLogin() {
 
  const [err, setErr,submit] = useInviteLoginF()
  const {role, setRole,mail, setMail} = useContext(UserContext)
+ 
   return (
     <div >
        <br />
@@ -72,7 +73,7 @@ export default function InviteLogin() {
               label={'Invite'}
               variant="contained"
             >
-              sai
+              
             </CustomButton>
           </form>
         </CustomBox>

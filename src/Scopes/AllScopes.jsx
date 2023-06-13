@@ -14,7 +14,7 @@ import CustomDialog from "../ReUsable/CustomDilog";
 import CustomTextField from "../ReUsable/CustomTextfield";
 import { DialogActions, MenuItem, TextField, Button } from "@mui/material";
 
-export default function Scope() {
+export  function AllScopes() {
   let history = useNavigate();
   const [
     data,
@@ -67,7 +67,7 @@ export default function Scope() {
       name: "Project Images",
       sortable: true,
       width: "9%",
-    },
+    }, 
     {
       selector: "scope_approval_status",
       name: "Status",

@@ -37,7 +37,7 @@ export default function AddProject() {
           sx={{ textAlign: "center", border: 1, p: 6, borderRadius: 2, mt: 15 }}
         >
           <CustomTypography variant="h4" sx={{ textAlign: "center" }}>
-            Project
+           Add Project
           </CustomTypography>
           <br />
           <form onSubmit={submit}>

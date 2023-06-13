@@ -13,12 +13,11 @@ import EditProjectLoginFunction from './AddProjectTableFunction'
 import { useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
   
-export default function EditProjectLogin() {
+export default function ProjectData() {
   let history = useNavigate();
-  
-    const [data, setData] = EditProjectLoginFunction()
+    const [data, setData,deleteID] = EditProjectLoginFunction()
 
-    
+   
 
     const columns = [
       { selector: "project_id", name: "Project ID", sortable: true, width: "8%" },
@@ -46,10 +45,28 @@ export default function EditProjectLogin() {
           <CustomButton
           type="button"
           variant="contained"
+          label="Delete"
+          onClick={() => {
+            deleteID(row.project_id)
+            // console.log()
+            // setID(row.project_id)
+          }}
+          >
+          </CustomButton>
+        ),
+        name: "Delete",
+        width: "10%"
+      }, 
+      {
+        cell: (row) => (
+          <CustomButton
+          type="button"
+          variant="contained"
           label="Deactive"
             onClick={() => {}}></CustomButton>
         ),
         name: "Deactive",
+        width: "15%"
       },
     ];
 
@@ -59,28 +76,14 @@ export default function EditProjectLogin() {
       data,
     };
 
-    useEffect(() => {
-      fetchData();
-    }, [])
-    const fetchData = async () =>{
-      await axios.post('/api/view_projects').then((res) => {
-        // setData(res.data)
-        console.log(res,'sai')
-        console.log(res.data.status,'sai')
-        if (res.data.status === true){
-          console.log('tiru')
-          setData(res.data.data)
-
-        }
-      })
-    }
+   
      return (
        <div >
           <br />
          <CustomContainer >
            <CustomBox sx={{ textAlign: "center", border:1, p:6, borderRadius:2, mt:15}}>
            <CustomTypography variant="h4" sx={{ textAlign: "center" }}>
-           Project
+           Project Data
          </CustomTypography>
          <br />
          <DataTableExtensions

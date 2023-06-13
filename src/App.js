@@ -1,42 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
-import { AddUser } from './Users/AddUser';
-import { SnackContext, UserContext } from "./Context/UserContext"
-import { BrowserRouter, Link,Route, Routes, Navigate } from "react-router-dom";
+import logo from "./logo.svg";
+import "./App.css";
+import { AddUser } from "./Users/AddUser";
+import { SnackContext, UserContext } from "./Context/UserContext";
+import { BrowserRouter, Link, Route, Routes, Navigate } from "react-router-dom";
 import { Snackbar, Alert, Slide } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Login } from './Login/Login';
-import axios from "axios"
+import {Users} from "./Users/Users"
+import { EditUser } from "./Users/EditUser";
+import {AddTask} from "./Tasks/AddTask"
+import {Tasks} from "./Tasks/Tasks"
 import InviteLogin from './InviteLogin/InviteLogin';
 import AcceptLogin from './AcceptLogin/AcceptLogin'
+import { EditTask } from "./Tasks/EditTask";
+import { AddScope } from "./Scopes/AddScope";
+import { EditScope } from "./Scopes/EditScope";
+import {AllScopes}from "./Scopes/AllScopes"
+import {ApprovedScopes} from "./Scopes/ApprovedScopes"
 import AddProject from './Project/AddProject'
-import EditProjectLogin from './Project/AddProjectTable'
+import ProjectData from './Project/AddProjectTable'
 import SingleProjectView from './Project/SingleProjectEdit'
-import Scope from './Scope/AllScopes'
-import ApprovedScopes from './Scope/ApprovedScopes'
-
 
 function App() {
   const [role, setRole] = useState("");
   const [mail, setMail] = useState("");
-  const [userProfile,setUserProfile]=useState({})
+  const [userProfile, setUserProfile] = useState({});
   const [snack, setSnack] = useState({
     message: "",
     color: "",
     open: false,
   });
-  useEffect(()=>{
-    axios.post("/api/getsession").then((res)=>{
-      if(res.data.status===true){
-        console.log(res.data.data)
-        setUserProfile(res.data.data)
-      }
-    })
-    console.log(userProfile,"userProfile")
-  },[])
+  // useEffect(() => {
+  //   axios.post("/api/getsession").then((res) => {
+  //     if (res.data.status === true) {
+  //       console.log(res.data.data);
+  //       setUserProfile(res.data.data);
+  //     }
+  //   });
+  //   console.log(userProfile, "userProfile");
+  // }, []);
   return (
     <div className="App">
-     <Snackbar
+      <Snackbar
         open={snack.open}
         autoHideDuration={2000}
         onClose={() => {
@@ -69,22 +74,38 @@ function App() {
       <BrowserRouter>
       <Link to="adduser">AddUser</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="login">Login</Link>&nbsp; &nbsp; &nbsp; &nbsp;
-      <Link to="invite_login">InviteLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
-      <Link to="accept_login">AcceptLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      {/* <Link to="edituser">EditUser</Link>&nbsp; &nbsp; &nbsp; &nbsp; */}
+      <Link to="users">Users</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="addtask">AddTask</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="tasks">Tasks</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="addscope">AddScope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="editscope">EditScope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="all_scope">AllScopes</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="approvescope">ApproveScope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      {/* <Link to="edittask">EditTask</Link>&nbsp; &nbsp; &nbsp; &nbsp; */}
+      <Link to="invite_user">InviteUser</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="accept_invite">AcceptInvite</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="add_project">AddProject</Link>&nbsp; &nbsp; &nbsp; &nbsp;
-      <Link to="edit_project_login">EditProjectLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
-      <Link to="scope">Scope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
-      <Link to="approved_scopes">ApprovedScopes</Link>
+      <Link to="project_data">ProjectData</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      
+
             <Routes>
             <Route path="adduser" element={<AddUser/>}/>
-              <Route path="login" element={<Login/>}/>
-              <Route path="invite_login" element={<InviteLogin/>}/>
-              <Route path="accept_login" element={<AcceptLogin/>}/>
+            <Route path="login" element={<Login/>}/>
+            <Route path="edituser/:id" element={<EditUser/>}/>
+              <Route path="users" element={<Users/>}/>
+              <Route path="addtask" element={<AddTask/>}/>
+              <Route path="tasks" element={<Tasks/>}/>
+              <Route path="addscope" element={<AddScope/>}/>
+              <Route path="editscope" element={<EditScope/>}/>
+              <Route path="all_scope" element={<AllScopes/>}/>
+              <Route path="approvescope" element={<ApprovedScopes/>}/>
+              <Route path="edittask/:id" element={<EditTask/>}/>
+              <Route path="invite_user" element={<InviteLogin/>}/>
+              <Route path="accept_invite" element={<AcceptLogin/>}/>
               <Route path="add_project" element={<AddProject/>}/>
-              <Route path="edit_project_login" element={<EditProjectLogin/>}/>
+              <Route path="project_data" element={<ProjectData/>}/>
               <Route path="single_project_view/:id" element={<SingleProjectView/>}/>
-              <Route path="Scope" element={<Scope/>}/>
-              <Route path="approved_scopes" element={<ApprovedScopes/>}/>
               </Routes></BrowserRouter>
       </SnackContext.Provider>
       </UserContext.Provider>

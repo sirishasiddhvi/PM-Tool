@@ -12,24 +12,24 @@ import { useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import ApprovedScopesFunction from './ApprovedScopesFunction'
 
-export default function ApprovedScopes() {
+export  function ApprovedScopes() {
   console.log('view_approved_scopes2')
     let history = useNavigate();
     const [data, setData] = ApprovedScopesFunction();
 
     const columns = [
         { selector: "scope_id", name: "Scope ID", sortable: true, width: "8%" },
-        { selector: "scope_title", name: "Scope Title", sortable: true, width: "9%" },
-        { selector: "project_id", name: "Project_ID", sortable: true, width: "9%" },
-        { selector: "manager_id", name: "Manager ID", sortable: true, width: "9%" },
-        { selector: "client_id", name: "Client ID", sortable: true, width: "9%" },
-        { selector: "scope_approved", name: "Scope Approved", sortable: true, width: "9%" },
-        { selector: "scope_desc", name: "Scope Desc", sortable: true, width: "9%" },
-        { selector: "created_date", name: "Created Date", sortable: true, width: "9%" },
+        { selector: "scope_title", name: "Scope Title", sortable: true, width: "15%" },
+        { selector: "project_id", name: "Project_ID", sortable: true, width: "15%" },
+        { selector: "manager_id", name: "Manager ID", sortable: true, width: "15%" },
+        { selector: "client_id", name: "Client ID", sortable: true, width: "15%" },
+        { selector: "scope_approved", name: "Scope Approved", sortable: true, width: "15%" },
+        { selector: "scope_desc", name: "Scope Desc", sortable: true, width: "15%" },
+        { selector: "created_date", name: "Created Date", sortable: true, width: "15%" },
         {
           cell:(row)=>(
             <img src={"static/scope/"+row.scope_images} height={100} width={100}/>
-          ), name: "Project Images", sortable: true, width: "9%" },  
+          ), name: "Project Images", sortable: true, width: "15%" },  
         {
           cell: (row) => (
             <CustomButton

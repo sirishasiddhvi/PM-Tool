@@ -4,6 +4,7 @@ import { useState, useContext, useEffect } from "react";
 import { UserContext, SnackContext } from "../Context/UserContext";
 
 export default function ScopeFunction() {
+  const { snack, setSnack } = useContext(SnackContext);
   const [reject, setReject] = useState(false);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
@@ -27,9 +28,7 @@ export default function ScopeFunction() {
 
   const fetchData = async () => {
     try {
-      const res = await axios.post('/api/view_all_scopes');
-      console.log(res, 'view_all_scopes');
-      console.log(res.data.status, 'view_all_scopes');
+      const res = await axios.post('/api/view_all_scopes');;
       if (res.data.status === true) {
         setData(res.data.data);
       }
@@ -45,29 +44,27 @@ export default function ScopeFunction() {
 
     axios.post("/api/scope_status", formData).then((res) => {
       console.log(res,'scope_status');
+
       setOpen(false);
 
       if (res.data.status === true) {
-        console.log('tirumalasai')
+        console.log(res.data.status,'res.data.status')
         fetchData();
-      }
-
-      // if (res.data.status === true) {
-      //   setSnack({
-      //     message: res.data.msg,
-      //     type: "success",
-      //     open: true,
-      //     direction: "center",
-      //   });
-      // } else {
-      //   setErr(1);
-      //   setSnack({
-      //     message: res.data.msg,
-      //     type: "error",
-      //     open: true,
-      //     direction: "center",
-      //   });
-      // }
+        setSnack({
+              message: res.data.msg,
+              type: "success",
+              open: true,
+              direction: "center",
+            });
+      }else {
+          setErr(1);
+          setSnack({
+            message: res.data.msg,
+            type: "error",
+            open: true,
+            direction: "center",
+          });
+        }
     });
   };
 
