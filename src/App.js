@@ -19,6 +19,10 @@ import { EditScope } from "./Scopes/EditScope";
 import {AllScopes}from "./Scopes/AllScopes"
 import {ApprovedScopes} from "./Scopes/ApprovedScopes"
 
+import AddProject from './Project/AddProject'
+import ProjectData from './Project/AddProjectTable'
+import SingleProjectView from './Project/SingleProjectEdit'
+
 function App() {
   const [role, setRole] = useState("");
   const [mail, setMail] = useState("");
@@ -77,13 +81,16 @@ function App() {
       <Link to="addtask">AddTask</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="tasks">Tasks</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="addscope">AddScope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
-      {/* <Link to="editscope">EditScope</Link>&nbsp; &nbsp; &nbsp; &nbsp; */}
+      <Link to="editscope">EditScope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      {/* <Link to="edittask">EditTask</Link>&nbsp; &nbsp; &nbsp; &nbsp; */}
+      <Link to="invite_user">InviteUser</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="accept_invite">AcceptInvite</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="add_project">AddProject</Link>&nbsp; &nbsp; &nbsp; &nbsp;
+      <Link to="project_data">ProjectData</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="allscopes">AllScopes</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       <Link to="approvescope">ApproveScope</Link>&nbsp; &nbsp; &nbsp; &nbsp;
       {/* <Link to="edittask">EditTask</Link>&nbsp; &nbsp; &nbsp; &nbsp; */}
-      <Link to="invite_login">InviteLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
-      <Link to="accept_login">AcceptLogin</Link>&nbsp; &nbsp; &nbsp; &nbsp;
-      <Link to="project_login">ProjectLogin</Link>
+      <Link to="project_login">InviteLogin</Link>
             <Routes>
             <Route path="adduser" element={<AddUser/>}/>
             <Route path="login" element={<Login/>}/>
@@ -92,12 +99,16 @@ function App() {
               <Route path="addtask" element={<AddTask/>}/>
               <Route path="tasks" element={<Tasks/>}/>
               <Route path="addscope" element={<AddScope/>}/>
-              <Route path="editscope/:id" element={<EditScope/>}/>
-              <Route path="allscopes" element={<AllScopes/>}/>
+              <Route path="editscope" element={<EditScope/>}/>
+              <Route path="edittask/:id" element={<EditTask/>}/>
+              <Route path="invite_user" element={<InviteLogin/>}/>
+              <Route path="accept_invite" element={<AcceptLogin/>}/>
+              <Route path="add_project" element={<AddProject/>}/>
+              <Route path="project_data" element={<ProjectData/>}/>
+              <Route path="single_project_view/:id" element={<SingleProjectView/>}/>
+              <Route path="allscope" element={<AllScopes/>}/>
               <Route path="approvescope" element={<ApprovedScopes/>}/>
               <Route path="edittask/:id" element={<EditTask/>}/>
-              <Route path="invite_login" element={<InviteLogin/>}/>
-              <Route path="accept_login" element={<AcceptLogin/>}/>
               <Route path="project_login" element={<ProjectLogin/>}/>
               </Routes></BrowserRouter>
       </SnackContext.Provider>

@@ -15,7 +15,7 @@ export const EditScope = () => {
     scopeChange,
     scopeSubmit,
     scope_desc,
-    scope_descChange,
+    scope_descChange, 
     scope_images,
     scope_imageChange,
     err,

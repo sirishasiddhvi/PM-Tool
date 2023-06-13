@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import { UserContext, SnackContext } from "../Context/UserContext";
-
+ 
 export default function ProjectLoginFunction() {
   const { snack, setSnack } = useContext(SnackContext);
   const [project_name, setProject_name] = useState("");
@@ -44,7 +44,7 @@ export default function ProjectLoginFunction() {
     }
     e.target.value = null;
   };
-
+  
   function submit(e) {
     e.preventDefault();
     setErr(0);
@@ -108,7 +108,7 @@ export default function ProjectLoginFunction() {
             direction: "center",
           });
         } else {
-          setErr(2);
+          setErr(6);
           setSnack({
             message: res.data.msg,
             type: "error",
